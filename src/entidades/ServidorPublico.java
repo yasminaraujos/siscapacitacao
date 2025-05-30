@@ -136,10 +136,11 @@ public class ServidorPublico {
         public void setCpf(String cpf) {
                 this.cpf = cpf;
         }
-
-
-        public double calcularSalarioHorasExtras (double horasTrabalhadas, double valorHora){
-                double salarioMensal = salario + (horasTrabalhadas*valorHora);
+        public double calcularSalarioHorasExtras ( double valorHora ,double... horasTrabalhadas){
+                double salarioMensal = 0;
+                for (double valor : horasTrabalhadas) {
+                        salarioMensal += valor * valorHora;
+                }
                 horasExtras = salarioMensal;
                 return (salarioMensal);
         }
