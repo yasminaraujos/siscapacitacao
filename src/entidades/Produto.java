@@ -3,7 +3,7 @@ package entidades;
 public class Produto {
     private String nome;
     private double price;
-    private int quantly;
+    private int quantity;
 
     public Produto(){}
 
@@ -23,14 +23,31 @@ public class Produto {
         this.price = price;
     }
 
-    public int getQuantly() {
-        return quantly;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setQuantly(int quantly) {
-        this.quantly = quantly;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
     public double calcularValoorEstoque(){
-
+        double value;
+        value = price * quantity;
+        return (value);
+    }
+    public void adicionarProdutos(int quantidade){
+        this.quantity += quantidade;
+    }
+    public void removerProdutos(int quantidade){
+        this.quantity -= quantidade;
+    }
+    public String toString(){
+        return nome
+                +", $"
+                + String.format("%.2f", price)
+                + ", "
+                + quantity
+                + " units, Total: $ "
+                + String.format("%.2f", calcularValoorEstoque());
     }
 }

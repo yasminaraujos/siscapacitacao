@@ -2,9 +2,6 @@ package aplicacao;
 
 import entidades.Produto;
 import entidades.ServidorPublico;
-
-import java.sql.SQLOutput;
-
 import java.util.Scanner;
 public class Programa {
     public static void main(String[] args) {
@@ -29,15 +26,30 @@ public class Programa {
         Scanner leia = new Scanner(System.in);
 
         System.out.println("Digite as informações do produto:");
-        System.out.println("Nome: ");
-        produto.setNome(leia.next());
-        System.out.println("Preço: ");
+        System.out.print("Nome: ");
+        produto.setNome(leia.nextLine());
+        System.out.print("Preço: ");
         produto.setPrice(leia.nextDouble());
-        System.out.println("Quantidade em estoque: ");
-        produto.setQuantly(leia.nextInt());
-
-        System.out.println("Informações do produto: "+produto.getNome());
-
-
+        System.out.print("Quantidade em estoque: ");
+        produto.setQuantity(leia.nextInt());
+        int op = 0;
+        while (op != 3) {
+            System.out.println("\n *Informações do produto* "+produto);
+            //System.out.println("Nome:"+produto.getNome()+" Preço:R$"+produto.getPrice()+" Quantidade em estoque:"+produto.getQuantity()+" Valor total no estoque:R$"+produto.calcularValoorEstoque());
+            System.out.print("\n *Realizar uma ação no estoque*\n1- Entrada 2- Saída 3-Fechar programa: ");
+            op = leia.nextInt();
+            if (op==1){
+                System.out.print("Quantidade de produtos que deseja adicionar: ");
+                int quantidade = leia.nextInt();
+                produto.adicionarProdutos(quantidade);
+            }
+            else if (op==2){
+                System.out.print("Quantidade de produtos que deseja remover: ");
+                int quantidade = leia.nextInt();
+                produto.removerProdutos(quantidade);
+            }
+        }
+        System.out.println("Fechando o programa :)");
+        leia.close();
     }
 }
