@@ -1,7 +1,10 @@
 package aplicacao;
 
+import entidades.Funcionario;
 import entidades.Produto;
 import entidades.ServidorPublico;
+
+import java.sql.SQLOutput;
 import java.util.Scanner;
 public class Programa {
     public static void main(String[] args) {
@@ -22,34 +25,19 @@ public class Programa {
 //        System.out.println("Servidor: "+ maria.getNome());
 //        ServidorPublico taylor = new ServidorPublico(134, "Taylor", "Professora");
 //        System.out.println("Servidor: "+ taylor.getNome());
-        Produto produto = new Produto();
+//        Produto produto = new Produto();
+        Funcionario funcionario = new Funcionario();
         Scanner leia = new Scanner(System.in);
-
-        System.out.println("Digite as informações do produto:");
-        System.out.print("Nome: ");
-        produto.setNome(leia.nextLine());
-        System.out.print("Preço: ");
-        produto.setPrice(leia.nextDouble());
-        System.out.print("Quantidade em estoque: ");
-        produto.setQuantity(leia.nextInt());
-        int op = 0;
-        while (op != 3) {
-            System.out.println("\n *Informações do produto* "+produto);
-            //System.out.println("Nome:"+produto.getNome()+" Preço:R$"+produto.getPrice()+" Quantidade em estoque:"+produto.getQuantity()+" Valor total no estoque:R$"+produto.calcularValoorEstoque());
-            System.out.print("\n *Realizar uma ação no estoque*\n1- Entrada 2- Saída 3-Fechar programa: ");
-            op = leia.nextInt();
-            if (op==1){
-                System.out.print("Quantidade de produtos que deseja adicionar: ");
-                int quantidade = leia.nextInt();
-                produto.adicionarProdutos(quantidade);
-            }
-            else if (op==2){
-                System.out.print("Quantidade de produtos que deseja remover: ");
-                int quantidade = leia.nextInt();
-                produto.removerProdutos(quantidade);
-            }
-        }
-        System.out.println("Fechando o programa :)");
-        leia.close();
+        System.out.print("Nome funcionário: ");
+        funcionario.setNome(leia.nextLine());
+        System.out.print("Salário Bruto: ");
+        funcionario.setSalarioBruto(leia.nextDouble());
+        System.out.print("Imposto: ");
+        funcionario.setImposto(leia.nextDouble());
+        System.out.println("Funcionário: "+funcionario.toString());
+        System.out.print("Qual a porcentagem de aumento do salário? ");
+        double porcentagem = leia.nextDouble();
+        funcionario.aumentarSalario(porcentagem);
+        System.out.println("Dados atualizados: "+funcionario.toString());
     }
 }
