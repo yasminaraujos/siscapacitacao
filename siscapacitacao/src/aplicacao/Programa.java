@@ -1,59 +1,86 @@
 package aplicacao;
 
-import entidades.Produto;
+import entidades.Curso;
 import entidades.ServidorPublico;
 
-import java.sql.SQLOutput;
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.List;
 
-import java.util.Scanner;
 public class Programa {
-    public static void main(String[] args) {
-//        ServidorPublico isabela = new ServidorPublico();
-//        isabela.setNome("Isabela");
-//        isabela.setCargo("Auditor");
-//        isabela.setOrgao("ANVISA");
-//        isabela.setLotacao("Brasilia");
-//        isabela.setEmail("isabela@gmail.");
-//        isabela.setSalario(2500);
-//
-//        System.out.println(isabela.calcularSalarioHorasExtras(5.60, 10 , 10));
-//        System.out.println("Servidor: "+ isabela.getNome());
-//        System.out.printf("Salário servidor: R$%.2f ",isabela.getHorasExtras());
-//
-//        ServidorPublico joao = new ServidorPublico();
-//        ServidorPublico maria = new ServidorPublico(123,"Maria");
-//        System.out.println("Servidor: "+ maria.getNome());
-//        ServidorPublico taylor = new ServidorPublico(134, "Taylor", "Professora");
-//        System.out.println("Servidor: "+ taylor.getNome());
-        Produto produto = new Produto();
-        Scanner leia = new Scanner(System.in);
 
-        System.out.println("Digite as informações do produto:");
-        System.out.print("Nome: ");
-        produto.setNome(leia.next());
-        System.out.print("Preço: ");
-        produto.setPrice(leia.nextDouble());
-        System.out.print("Quantidade em estoque: ");
-        produto.setQuantity(leia.nextInt());
-        
-        int op = 0;
-        while (op != 3) {
-            System.out.println("\n *Informações do produto* ");
-            System.out.println("Nome:"+produto.getNome()+" Preço:R$"+produto.getPrice()+" Quantidade em estoque:"+produto.getQuantity()+" Valor total no estoque:R$"+produto.calcularValoorEstoque());
-            System.out.print("\n *Realizar uma ação no estoque*\n1- Entrada 2- Saída 3-Fechar programa: ");
-            op = leia.nextInt();
-            if (op==1){
-                System.out.print("Quantidade de produtos que deseja adicionar: ");
-                int quantidade = leia.nextInt();
-                produto.adicionarProdutos(quantidade);
-            }
-            else if (op==2){
-                System.out.print("Quantidade de produtos que deseja remover: ");
-                int quantidade = leia.nextInt();
-                produto.removerProdutos(quantidade);
-            }   
+        // Lista de Servidores
+        List<ServidorPublico> servidores = new ArrayList<>();
+        // Lista de Cursos
+        List<Curso> cursos = new ArrayList<>();
+
+        /**
+         * Metodo que adiciona o servidor instaciado na nossa lista de Servidores
+         */
+        public void adicionarServidorPublico(){
+            int matricula = Integer.parseInt(JOptionPane.showInputDialog(null, "Informe a Matrícula"));
+            String nome = JOptionPane.showInputDialog(null, "Informe o nome do servidor");
+            String orgao = JOptionPane.showInputDialog(null, "Informe o Órgão");
+            String cargo = JOptionPane.showInputDialog(null, "Informe o Cargo do servidor");
+            String lotacao = JOptionPane.showInputDialog(null, "Informe a Lotação do servidor");
+            String email = JOptionPane.showInputDialog(null, "Informe o Email do servidor");
+            double salario = Double.parseDouble(JOptionPane.showInputDialog(null, "Informe o Salario do servidor"));
+            ServidorPublico servidor = new ServidorPublico(matricula, nome, orgao, salario,
+            cargo, lotacao, email);
+            servidores.add(servidor);
         }
-        System.out.println("Fechando o programa :)");
-        leia.close();
+
+        /**
+         * Metodo que lista todos nossos servidores adicionados na lista de Servidores
+         */
+        public void listarServidores(){
+           for (ServidorPublico servidor: servidores){
+               System.out.println(servidor);
+           }
+        }
+//        public void listarServidores(int matricula){
+//            boolean encontrou = false;
+//            for (ServidorPublico servidor : servidores){
+//                if (servidor.getMatricula() == matricula){
+//                    System.out.println(servidor);
+//                    encontrou = true;
+//                    break;
+//                }
+//            }
+//            if (!encontrou){
+//                JOptionPane.showMessageDialog(null,
+//                        "Servidor não encontrado!");
+//            }
+//        }
+        public void listarServidores(String nome){
+            boolean encontrou = false;
+            for (ServidorPublico servidor : servidores){
+                if (servidor.getNome() == nome){
+                    System.out.println(servidor);
+                    encontrou = true;
+                    break;
+            }
+        }
+        if (!encontrou){
+            JOptionPane.showMessageDialog(null,
+                    "Servidor não encontrado!");
+        }
+    }
+
+//        alterarServidorPublico()
+//        excluirServidorPublico()
+//        excluirServidorPublico()
+//        calcularFolhaServidoresPublicos()
+    public static void main(String[] args) {
+            Programa programa = new Programa();
+            programa.adicionarServidorPublico();
+            programa.adicionarServidorPublico();
+            programa.listarServidores();
+//            programa.listarServidores(Integer.parseInt(JOptionPane.showInputDialog
+//                    (null, "Informe a matrícula que deseja pesquisar")));
+//            programa.listarServidores(Integer.parseInt(JOptionPane.showInputDialog
+//                (null, "Informe a matrícula que deseja pesquisar")));
+        programa.listarServidores(JOptionPane.showInputDialog
+                  (null, "Informe o nome que deseja pesquisar"));
     }
 }

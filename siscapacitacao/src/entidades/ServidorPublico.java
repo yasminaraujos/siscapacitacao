@@ -18,15 +18,38 @@ public class ServidorPublico {
         private double horasExtras;
 
         public ServidorPublico(){}
-        public ServidorPublico(int matricula,String nome){
+
+        public ServidorPublico(int matricula, String nome, String orgao, double salario,
+                               String cargo, String lotacao, String email) {
                 this.matricula = matricula;
                 this.nome = nome;
-        }
-        public ServidorPublico(int matricula, String nome, String cargo){
-                this.matricula = matricula;
-                this.nome = nome;
+                this.orgao = orgao;
+                this.salario = salario;
                 this.cargo = cargo;
+                this.lotacao = lotacao;
+                this.email = email;
         }
+
+        public ServidorPublico(int matricula, String nome, String foto, String orgao, String vinculo,
+                               double salario, int idade, int tempoDeContribuicao, String cargo, String telefone,
+                               String celular, String cpf, String lotacao, String email, double horasExtras) {
+                this.matricula = matricula;
+                this.nome = nome;
+                this.foto = foto;
+                this.orgao = orgao;
+                this.vinculo = vinculo;
+                this.salario = salario;
+                this.idade = idade;
+                this.tempoDeContribuicao = tempoDeContribuicao;
+                this.cargo = cargo;
+                this.telefone = telefone;
+                this.celular = celular;
+                this.cpf = cpf;
+                this.lotacao = lotacao;
+                this.email = email;
+                this.horasExtras = horasExtras;
+        }
+
         public double getHorasExtras() {
                 return horasExtras;
         }
@@ -153,5 +176,17 @@ public class ServidorPublico {
                 }
                 horasExtras = salarioMensal;
                 return (salarioMensal);
+        }
+
+        @Override
+        public String toString() {
+                return "ServidorPublico{" +
+                        "matricula=" + matricula +
+                        ", nome='" + nome + '\'' +
+                        ", orgao='" + orgao + '\'' +
+                        ", salario=" + salario +
+                        ", cargo='" + cargo + '\'' +
+                        ", lotacao='" + lotacao + '\'' +
+                        '}';
         }
 }

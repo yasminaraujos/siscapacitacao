@@ -27,10 +27,9 @@ public class Produto {
         return quantity;
     }
 
-    public void setQuantity(int quantly) {
-        this.quantity = quantly;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
-    
     public double calcularValoorEstoque(){
         double value;
         value = price * quantity;
@@ -42,5 +41,13 @@ public class Produto {
     public void removerProdutos(int quantidade){
         this.quantity -= quantidade;
     }
-
+    public String toString(){
+        return nome
+                +", $"
+                + String.format("%.2f", price)
+                + ", "
+                + quantity
+                + " units, Total: $ "
+                + String.format("%.2f", calcularValoorEstoque());
+    }
 }
